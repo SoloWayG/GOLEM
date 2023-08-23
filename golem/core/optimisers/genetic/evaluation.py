@@ -196,7 +196,7 @@ class BaseGraphEvaluationDispatcher(ObjectiveEvaluationDispatcher):
     def evaluate_with_cache(self, population: PopulationT) -> PopulationT:
         reversed_population = list(reversed(population))
         self._remote_compute_cache(reversed_population)
-        evaluated_population = self.evaluate_population(reversed_population)
+        evaluated_population = self.evaluate_population(reversed_population)  # !!!!
         self._reset_eval_cache()
         return evaluated_population
 
