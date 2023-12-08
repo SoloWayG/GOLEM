@@ -1,6 +1,5 @@
 from abc import ABC
 from datetime import timedelta
-from functools import partial
 from typing import Optional, Callable, Dict, Tuple, Any
 
 import numpy as np
@@ -11,7 +10,6 @@ from hyperopt.pyll import Apply
 from golem.core.adapter import BaseOptimizationAdapter
 from golem.core.dag.linked_graph_node import LinkedGraphNode
 from golem.core.log import default_log
-from golem.core.optimisers.graph import OptGraph
 from golem.core.optimisers.objective import ObjectiveFunction
 from golem.core.tuning.search_space import SearchSpace, get_node_operation_parameter_label
 from golem.core.tuning.tuner_interface import BaseTuner
@@ -141,7 +139,7 @@ def get_node_parameters_for_hyperopt(search_space: SearchSpace, node_id: int, no
     Args:
         search_space: SearchSpace with parameters per operation
         node_id: number of node in graph.nodes list
-        operation_name: name of operation in the node
+        node: node from the graph
 
     Returns:
         parameters_dict: dictionary-like structure with labeled hyperparameters
