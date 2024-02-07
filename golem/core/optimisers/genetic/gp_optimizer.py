@@ -85,7 +85,7 @@ class EvoGraphOptimizer(PopulationalOptimizer):
         """ Initializes the initial population """
         # Adding of initial assumptions to history as zero generation
         test_var = evaluator(self.initial_individuals)  # !!!!!
-        self._update_population(test_var, 'initial_assumptions')
+        self._update_population(test_var, 'initial_assumptions')  #!!! switch to one
         pop_size = self.graph_optimizer_params.pop_size
 
         if len(self.initial_individuals) < pop_size:

@@ -167,7 +167,11 @@ class GraphOptimizer:
     @property
     def _progressbar(self):
         if self.requirements.show_progress:
-            bar = tqdm(total=self.requirements.num_of_generations, desc='Generations', unit='gen', initial=0)
+            if self.use_saved_state:
+                bar = tqdm(total=self.requirements.num_of_generations, desc='Generations', unit='gen',
+                           initial=self.current_generation_num - 2)
+            else:
+                bar = tqdm(total=self.requirements.num_of_generations, desc='Generations', unit='gen', initial=0)
         else:
             # disable call to tqdm.__init__ to avoid stdout/stderr access inside it
             # part of a workaround for https://github.com/nccr-itmo/FEDOT/issues/765
@@ -199,14 +203,14 @@ class GraphOptimizer:
         with open(saved_state_path, 'wb') as f:
             # pickle.dump(self, f, 2)
             pickle.dump(self.__dict__, f, 2)
-            pickle.dump(self.__class__, f, 2)
+            # pickle.dump(self.__class__, f, 2)
 
     def load(self, saved_state_path):
         with open(saved_state_path, 'rb') as f:
             dict_state = pickle.load(f)
-            class_state = pickle.load(f)
+            # class_state = pickle.load(f)
             self.__dict__.update(dict_state)
-            self.__class__ = class_state
+            # self.__class__ = class_state
 
 
     # def __getstate__(self):
