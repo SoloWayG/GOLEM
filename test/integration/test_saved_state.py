@@ -22,8 +22,8 @@ def test_saved_state():
     # Set params
     size = 16
     early_stopping_iterations = 200
-    num_of_generations_run_1 = 17  # 40 100 10
-    num_of_generations_run_2 = 19  # 45 120 12
+    num_of_generations_run_1 = 10  # 40 100 10
+    num_of_generations_run_2 = 12  # 45 120 12
     timeout = 10
     saved_state_path = 'saved_optimisation_state/test'
 
@@ -71,6 +71,9 @@ def test_saved_state():
     optimiser2.optimise(objective)
     et = time.time()
     time2 = int(et - st) / 60
+
+    # Make sure the second run made it to the end
+    assert optimiser1.current_generation_num == num_of_generations_run_2 + 2
 
     print(time1)
     print(time2)

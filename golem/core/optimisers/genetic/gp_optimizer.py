@@ -66,19 +66,6 @@ class EvoGraphOptimizer(PopulationalOptimizer):
             self.graph_optimizer_params.pop_size = self._pop_size.initial
             self.initial_individuals = [Individual(graph, metadata=requirements.static_individual_metadata)
                                         for graph in self.initial_graphs]
-        else:
-            pass
-            # self.regularization.requirements = self.requirements
-            # self.selection.requirements = self.requirements
-            # self.crossover.requirements = self.requirements
-            # self.mutation.requirements = self.requirements
-            # self.inheritance.requirements = self.requirements
-            # self.elitism.requirements = self.requirements
-            # for op in self.operators:
-            #     op.requirements = self.requirements
-            # self.reproducer.crossover.requirements = self.requirements
-            # self.reproducer.mutation.requirements = self.requirements
-            # self.reproducer.selection.requirements = self.requirements
 
 
     def _initial_population(self, evaluator: EvaluationOperator):

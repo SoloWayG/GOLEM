@@ -5,8 +5,6 @@ from datetime import timedelta, datetime
 from random import choice
 from typing import Any, Optional, Sequence, Dict
 
-from tqdm import tqdm
-
 from golem.core.constants import MIN_POP_SIZE
 from golem.core.dag.graph import Graph
 from golem.core.optimisers.archive import GenerationKeeper
@@ -53,13 +51,13 @@ class PopulationalOptimizer(GraphOptimizer):
                          saved_state_path)
 
         if use_saved_state:
-            # add logging!!!!
+            # add logging!
             print('USING SAVED STATE')
             if saved_state_file:
                 if os.path.isfile(saved_state_file):
                     current_saved_state_path = saved_state_file
                 else:
-                    # add logging
+                    # add logging!
                     raise SystemExit('ERROR: Could not restore saved optimisation state: '
                                      f'given file with saved state {saved_state_file} not found.')
             else:
@@ -67,7 +65,7 @@ class PopulationalOptimizer(GraphOptimizer):
                     full_state_path = os.path.join(default_data_dir(), self._saved_state_path)
                     current_saved_state_path = self._find_latest_file_in_dir(self._find_latest_dir(full_state_path))
                 except (ValueError, FileNotFoundError):
-                    # add logging
+                    # add logging!
                     raise SystemExit('ERROR: Could not restore saved optimisation state: '
                                      f'path with saved state {full_state_path} not found.')
             try:
@@ -161,7 +159,7 @@ class PopulationalOptimizer(GraphOptimizer):
         with self.timer, self._progressbar as pbar:
 
             if not self.use_saved_state:
-                self._initial_population(evaluator)  # !!!!!
+                self._initial_population(evaluator)
             else:
                 self.eval_dispatcher.timer = self.timer
 
@@ -181,12 +179,12 @@ class PopulationalOptimizer(GraphOptimizer):
                 delta = datetime.now() - last_write_time
                 if delta.seconds >= save_state_delta:
                     self.save(os.path.join(saved_state_path, f'{str(round(time.time()))}.pkl'))
-                    print(os.path.join(saved_state_path, f'{str(round(time.time()))}.pkl'))  # log!!!!!!!!!
+                    print(os.path.join(saved_state_path, f'{str(round(time.time()))}.pkl'))  # add logging!
                     last_write_time = datetime.now()
         pbar.close()
         self._update_population(self.best_individuals, 'final_choices')
         self.save(os.path.join(saved_state_path, f'{str(round(time.time()))}.pkl'))
-        print(os.path.join(saved_state_path, f'{str(round(time.time()))}.pkl'))  # log!!!!!!!!!
+        print(os.path.join(saved_state_path, f'{str(round(time.time()))}.pkl'))  # add logging!
         return [ind.graph for ind in self.best_individuals]
 
     @property
@@ -242,17 +240,6 @@ class PopulationalOptimizer(GraphOptimizer):
             unique_population = self._extend_population(pop=unique_population, target_pop_size=MIN_POP_SIZE)
         return evaluator(unique_population)
 
-    # @property
-    # def _progressbar(self):
-    #     if self.requirements.show_progress:
-    #         bar = tqdm(total=self.requirements.num_of_generations,
-    #                    desc='Generations', unit='gen', initial=1)
-    #     else:
-    #         # disable call to tqdm.__init__ to avoid stdout/stderr access inside it
-    #         # part of a workaround for https://github.com/nccr-itmo/FEDOT/issues/765
-    #         bar = EmptyProgressBar()
-    #     return bar
-
 
     def _edit_time_vars(self, var, saved_state_timestamp, downtime, prev_run_len, varname='', parent=None):
         '''
@@ -266,23 +253,16 @@ class PopulationalOptimizer(GraphOptimizer):
         '''
         if '_history' in varname or len(varname.split('/')) > 25:
             return
-        # print(varname)
 
         if isinstance(var, dict):
             for key, item in var.items():
-                # if isinstance(item, GraphRequirements):
-                #     var[key] = self.requirements
-                #     print(f'requirements: {varname}')
                 if isinstance(item, OptimisationTimer):
                     var[key] = self.timer
-                    print(f'timer: {varname}')
                 else:
-                    self._edit_time_vars(item, saved_state_timestamp, downtime, prev_run_len, f'{varname}/{key}', var)  # , var
-
+                    self._edit_time_vars(item, saved_state_timestamp, downtime, prev_run_len, f'{varname}/{key}', var)
         elif isinstance(var, list) or isinstance(var, tuple) or isinstance(var, set):
             for count, el in enumerate(var):
                 self._edit_time_vars(el, saved_state_timestamp, downtime, prev_run_len, f'{varname}[{count}]')
-
         else:
             try:
                 var_dict = var.__dict__
@@ -291,27 +271,11 @@ class PopulationalOptimizer(GraphOptimizer):
             if var_dict:
                 self._edit_time_vars(var_dict, saved_state_timestamp, downtime, prev_run_len, varname)
             elif varname:
-                try:
-                    if ('time' in varname) and ('computation_time_in_seconds' not in varname) and (
-                            'evaluation_time_iso' not in varname):
-                        print(varname, type(varname), var, type(var))
-                except Exception:
-                    pass
-
                 varnames = varname.split('/')
-                if 'stagnation_start_time' in varnames[-1]:   # isinstance(varname, str) and
+                if 'stagnation_start_time' in varnames[-1]:
                     stag_time_delta = saved_state_timestamp - var
                     if abs(stag_time_delta.total_seconds()) < 900:  # Check if the delta is less than 15 min
                         parent[varnames[-1]] = datetime.now() - stag_time_delta
-
-                # elif isinstance(varname, str) and 'evaluation_time_iso' in varname:
-                #     parent[varname] = datetime.isoformat(datetime.fromisoformat(var) + downtime)
-
-                # elif isinstance(varname, str) and 'init_time' in varname:
-                #     parent[varname] = var + downtime
-                # elif isinstance(varname, str) and 'timeout' in varname:
-                #     parent[varname] = var - prev_run_len
-
 
 
 # TODO: remove this hack (e.g. provide smth like FitGraph with fit/unfit interface)
