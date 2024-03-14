@@ -1,9 +1,9 @@
 from datetime import timedelta
 from functools import partial
 
-from examples.synthetic_graph_evolution.experiment_setup import run_trial
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
-from examples.synthetic_graph_evolution.tree_search import tree_search_setup
+from golem_examples.synthetic_graph_evolution.experiment_setup import run_trial
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.tree_search import tree_search_setup
 from golem.core.optimisers.genetic.gp_params import GPAlgorithmParameters
 from golem.core.optimisers.genetic.operators.base_mutations import MutationTypesEnum
 from golem.core.optimisers.genetic.operators.crossover import CrossoverTypesEnum

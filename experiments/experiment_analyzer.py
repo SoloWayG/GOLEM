@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
 
-from examples.adaptive_optimizer.utils import plot_action_values
+from golem_examples.adaptive_optimizer.utils import plot_action_values
 from golem.core.log import default_log
 from golem.core.optimisers.adaptive.operator_agent import OperatorAgent, ObsType
 from golem.core.optimisers.opt_history_objects.opt_history import OptHistory

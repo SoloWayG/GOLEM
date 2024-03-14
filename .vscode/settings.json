@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": ["./examples"],
+    "python.analysis.importFormat": "relative",
+    "python.autoComplete.extraPaths":["${workspaceRoot}","${workspaceRoot}/examples"  
+]
+}

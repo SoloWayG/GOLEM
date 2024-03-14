@@ -4,7 +4,7 @@ import datetime
 
 import pytest
 
-from examples.graph_model_optimization import run_custom_example
+from golem_examples.graph_model_optimization import run_custom_example
 from golem.utilities.profiler.memory_profiler import MemoryProfiler
 from golem.utilities.profiler.time_profiler import TimeProfiler
 

@@ -2,7 +2,7 @@ from functools import partial
 
 import networkx as nx
 
-from examples.synthetic_graph_evolution.generators import relabel_nx_graph
+from golem_examples.synthetic_graph_evolution.generators import relabel_nx_graph
 from golem.core.adapter.nx_adapter import BaseNetworkxAdapter
 from golem.core.dag.verification_rules import has_no_isolated_components, has_no_self_cycled_nodes, \
     has_no_isolated_nodes

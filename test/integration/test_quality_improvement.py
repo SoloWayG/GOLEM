@@ -4,10 +4,10 @@ from typing import Sequence
 import numpy as np
 import pytest
 
-from examples.synthetic_graph_evolution.experiment_setup import run_trial
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
-from examples.synthetic_graph_evolution.graph_search import graph_search_setup
-from examples.synthetic_graph_evolution.tree_search import tree_search_setup
+from golem_examples.synthetic_graph_evolution.experiment_setup import run_trial
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.graph_search import graph_search_setup
+from golem_examples.synthetic_graph_evolution.tree_search import tree_search_setup
 from golem.core.optimisers.genetic.gp_optimizer import EvoGraphOptimizer
 from golem.core.optimisers.opt_history_objects.opt_history import OptHistory
 

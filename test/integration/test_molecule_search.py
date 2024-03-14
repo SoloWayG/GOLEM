@@ -1,7 +1,7 @@
 import pytest
 
-from examples.molecule_search.experiment import molecule_search_setup, get_methane, get_all_mol_metrics
-from examples.molecule_search.mol_adapter import MolAdapter
+from golem_examples.molecule_search.experiment import molecule_search_setup, get_methane, get_all_mol_metrics
+from golem_examples.molecule_search.mol_adapter import MolAdapter
 
 
 @pytest.mark.parametrize('metric_name, metric', get_all_mol_metrics().items())

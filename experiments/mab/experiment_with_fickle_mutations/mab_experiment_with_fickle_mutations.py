@@ -4,9 +4,9 @@ import random
 
 from typing import List, Any
 
-from examples.adaptive_optimizer.mab_experiment_different_targets import get_graph_gp_params
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
-from examples.synthetic_graph_evolution.graph_search import graph_search_setup
+from golem_examples.adaptive_optimizer.mab_experiment_different_targets import get_graph_gp_params
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.graph_search import graph_search_setup
 from experiments.mab.experiment_with_fickle_mutations.fickle_mutations import fake_add_mutation, fake_add_mutation2, \
     fake_add_mutation3
 from experiments.mab.mab_synthetic_experiment_helper import MABSyntheticExperimentHelper

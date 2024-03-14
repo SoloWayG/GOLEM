@@ -7,7 +7,7 @@ import numpy as np
 import zss
 from networkx import graph_edit_distance, is_tree
 
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
 from golem.core.optimisers.optimization_parameters import GraphRequirements
 from golem.metrics.graph_metrics import min_max
 from libs.netcomp import edit_distance

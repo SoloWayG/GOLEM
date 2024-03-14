@@ -5,7 +5,7 @@ from typing import Optional
 import numpy as np
 import pytest
 
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
 from golem.core.adapter.nx_adapter import BaseNetworkxAdapter
 from golem.core.optimisers.genetic.gp_params import GPAlgorithmParameters
 from golem.core.optimisers.genetic.operators.base_mutations import MutationTypesEnum

@@ -12,11 +12,11 @@ from typing import List, Callable, Sequence, Optional, Dict, Tuple
 from matplotlib import pyplot as plt
 from sklearn.cluster import MiniBatchKMeans
 
-from examples.adaptive_optimizer.mab_experiment_different_targets import get_graph_gp_params
-from examples.adaptive_optimizer.utils import plot_action_values
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
-from examples.synthetic_graph_evolution.graph_search import graph_search_setup
-from examples.synthetic_graph_evolution.utils import draw_graphs_subplots
+from golem_examples.adaptive_optimizer.mab_experiment_different_targets import get_graph_gp_params
+from golem_examples.adaptive_optimizer.utils import plot_action_values
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.graph_search import graph_search_setup
+from golem_examples.synthetic_graph_evolution.utils import draw_graphs_subplots
 from golem.core.adapter.nx_adapter import BaseNetworkxAdapter
 from golem.core.dag.graph import Graph
 from golem.core.optimisers.adaptive.context_agents import ContextAgentTypeEnum

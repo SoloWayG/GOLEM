@@ -1,6 +1,6 @@
 import os.path
 
-from examples.structural_analysis.opt_graph_optimization import get_opt_graph, quality_custom_metric_1
+from golem_examples.structural_analysis.opt_graph_optimization import get_opt_graph, quality_custom_metric_1
 from golem.core.dag.graph_verifier import GraphVerifier
 from golem.core.dag.verification_rules import DEFAULT_DAG_RULES
 from golem.core.optimisers.graph import OptGraph, OptNode

@@ -6,8 +6,8 @@ import numpy as np
 import pytest
 from typing import Tuple, Callable, Sequence
 
-from examples.synthetic_graph_evolution.generators import generate_labeled_graph
-from examples.synthetic_graph_evolution.tree_search import tree_search_setup
+from golem_examples.synthetic_graph_evolution.generators import generate_labeled_graph
+from golem_examples.synthetic_graph_evolution.tree_search import tree_search_setup
 from golem.core.adapter.nx_adapter import BaseNetworkxAdapter
 from golem.core.dag.graph import Graph
 from golem.core.optimisers.objective import Objective
